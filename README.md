@@ -37,7 +37,7 @@ npm run dev
 
 
 ## API Integration
-This application utilizes an external API (restcountries) to fetch ISO3 country codes since the original api's didnt have one. This is to display in the app population data.
+This application utilizes an external API (restcountries) to fetch ISO3 country codes since the original api's didnt have one. This is to display in the app population data with chart.js.
 
 ## Functionality
 Users can view a list of available countries.
