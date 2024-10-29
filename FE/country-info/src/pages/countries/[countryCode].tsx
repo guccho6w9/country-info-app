@@ -3,9 +3,11 @@ import "@/app/globals.css";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { fetchCountryInfo } from "@/services/countryService";
+import Header from "@/components/header"
 import { Line } from "react-chartjs-2";
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from "chart.js";
 import { FaSpinner } from "react-icons/fa"; 
+
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -80,10 +82,12 @@ const CountryDetail: React.FC = () => {
   };
 
   return (
-    <div className="p-8 bg-white rounded-lg shadow-md max-w-2xl mx-auto mt-12">
+    
+    <div className="p-8 bg-white rounded-lg shadow-md max-w-2xl mx-auto mt-20">
       <h1 className="text-5xl font-bold mb-6 text-center text-blue-800">
         {countryDetails.commonName || "No common name available"}
       </h1>
+      <Header />
       {countryDetails.flagUrl ? (
         <img
           src={countryDetails.flagUrl}
