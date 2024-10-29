@@ -4,6 +4,18 @@ const NAGER_API_URL = "https://date.nager.at/api/v3";
 const COUNTRIES_NOW_API_URL = "https://countriesnow.space/api/v0.1";
 const REST_COUNTRIES_API_URL = "https://restcountries.com/v3.1";
 
+
+exports.fetchAvailableCountries = async () => {
+  try {
+    const response = await axios.get(`${NAGER_API_URL}/AvailableCountries`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching available countries:", error);
+    throw new Error("Could not fetch available countries");
+  }
+};
+
+
 exports.fetchCountryInfo = async (countryCode) => {
   if (!countryCode) {
     console.error("Country code is required");
@@ -13,9 +25,9 @@ exports.fetchCountryInfo = async (countryCode) => {
   console.log(`Fetching country info for: ${countryCode}`);
 
   try {
-
+   
     const restCountriesResponse = await axios.get(`${REST_COUNTRIES_API_URL}/alpha/${countryCode}`);
-    const iso3Code = restCountriesResponse.data[0]?.cca3 || ""; 
+    const iso3Code = restCountriesResponse.data[0]?.cca3 || ""; // ISO3 obtenido
 
     if (!iso3Code) {
       console.warn(`No se encontró el código ISO3 para el país con código ISO2: ${countryCode}`);
@@ -25,21 +37,24 @@ exports.fetchCountryInfo = async (countryCode) => {
 
     const countryInfoResponse = await axios.get(`${NAGER_API_URL}/CountryInfo/${countryCode}`);
     const countryInfo = countryInfoResponse.data;
+
+    console.log("Country Info from Nager API:", countryInfo); 
+
     const borders = countryInfo.borders || [];
 
-
+ 
     const populationResponse = await axios.get(`${COUNTRIES_NOW_API_URL}/countries/population`);
     const populationData = populationResponse.data.data;
     const countryPopulation = populationData.find(item => item.iso3 === iso3Code);
     const formattedPopulationData = countryPopulation ? countryPopulation.populationCounts : [];
 
-
+  
     const flagsResponse = await axios.get(`${COUNTRIES_NOW_API_URL}/countries/flag/images`);
     const flagData = flagsResponse.data.data;
     const countryFlag = flagData.find(flag => flag.iso2 === countryCode) || {};
 
     return {
-      commonName: countryInfo.name || "No common name available",
+      commonName: countryInfo.commonName || countryInfo.name || "No common name available",
       officialName: countryInfo.officialName || "No official name available",
       region: countryInfo.region || "No region available",
       borders,
