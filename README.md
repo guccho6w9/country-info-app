@@ -8,15 +8,19 @@ This is a Country Information App that allows users to view information about di
    ```bash
    git clone https://github.com/guccho6w9/country-info-app.git
    cd country-info-app
+Backend dependencies (included requirements.txt in BE):
 
 cd BE:
 
 npm install
 
 
-
+Frontend dependencies.
 cd FE:
 
+npm install
+
+cd FE/country-info:
 npm install
 
 
