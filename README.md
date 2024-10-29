@@ -13,9 +13,9 @@ cd BE:
 
 npm install
 
-cd ..
 
-cd /FE:
+
+cd FE:
 
 npm install
 
@@ -28,10 +28,10 @@ cd BE:
 
 node server.js
 
-cd..
+
 2) Start the frontend application:
 
-cd /FE:
+cd FE:
 
 npm run dev
 
