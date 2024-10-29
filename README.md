@@ -9,25 +9,30 @@ This is a Country Information App that allows users to view information about di
    git clone https://github.com/guccho6w9/country-info-app.git
    cd country-info-app
 
-cd BE
+cd BE:
+
 npm install
 
 cd ..
 
-cd /FE
+cd /FE:
+
 npm install
 
 
 ## Usage 
+
 1) Start the backend server:
 
-cd BE
+cd BE:
+
 node server.js
 
 cd..
 2) Start the frontend application:
 
-cd /FE
+cd /FE:
+
 npm run dev
 
 
