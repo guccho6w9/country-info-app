@@ -30,7 +30,7 @@ exports.fetchCountryInfo = async (countryCode) => {
     const iso3Code = restCountriesResponse.data[0]?.cca3 || ""; // ISO3 obtenido
 
     if (!iso3Code) {
-      console.warn(`No se encontró el código ISO3 para el país con código ISO2: ${countryCode}`);
+      console.warn(`ISO3 not found for country with ISO2: ${countryCode}`);
       return { message: "Country ISO3 code not found" };
     }
 
